@@ -18,7 +18,7 @@ class Users(Base):
     last_name = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
-    relationship_bookmarks = relationship('Bookmarks')
+    relationship_bookmarks = relationship('Bookmarks', backref='users', lazy=True)
 
 class Bookmarks(Base):
     __tablename__ = 'bookmarks'
@@ -40,7 +40,7 @@ class Characters(Base):
     height = Column(Integer,nullable=False)
     skin_color = Column(String(250), nullable=False)
     eye_color = Column(String(250), nullable=False)
-    relationship_bookmarks = relationship('Bookmarks')
+    relationship_bookmarks = relationship('Bookmarks', backref='characters', lazy=True)
 
 class Planets(Base):
     __tablename__ = 'planets'
@@ -53,7 +53,7 @@ class Planets(Base):
     orbital_period = Column(Integer, nullable=False)
     rotation_period = Column(Integer, nullable=False)
     diameter = Column(Integer, nullable=False)
-    relationship_bookmarks = relationship('Bookmarks')
+    relationship_bookmarks = relationship('Bookmarks', backref='planets', lazy=True)
 
     def to_dict(self):
         return {}
