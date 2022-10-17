@@ -18,6 +18,8 @@ class Users(Base):
     last_name = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
+    relationship_bookmarks = relationship('Bookmarks')
+
 class Bookmarks(Base):
     __tablename__ = 'bookmarks'
     # Here we define columns for the table person
@@ -38,8 +40,8 @@ class Characters(Base):
     height = Column(Integer,nullable=False)
     skin_color = Column(String(250), nullable=False)
     eye_color = Column(String(250), nullable=False)
-    # person_id = Column(Integer, ForeignKey('person.id'))
-    # person = relationship(Person)
+    relationship_bookmarks = relationship('Bookmarks')
+
 class Planets(Base):
     __tablename__ = 'planets'
     # Here we define columns for the table address.
@@ -51,8 +53,7 @@ class Planets(Base):
     orbital_period = Column(Integer, nullable=False)
     rotation_period = Column(Integer, nullable=False)
     diameter = Column(Integer, nullable=False)
-    # person_id = Column(Integer, ForeignKey('person.id'))
-    # person = relationship(Person)
+    relationship_bookmarks = relationship('Bookmarks')
 
     def to_dict(self):
         return {}
